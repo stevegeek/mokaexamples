@@ -1,0 +1,25 @@
+<?php
+/*
+ * main.op
+ * example2
+ *
+ * Copyright 2010
+ * Stephen Ierodiaconou <>
+ * Created
+ */
+
+// Port of this simple example. The name List cannot be used as its a PHP keyword
+// and in Objective-PHP these are not valid for class/protocol or category names
+// Instead it is named Container
+// http://www.cs.indiana.edu/classes/c304/oop-intro.html
+
+@import <Foundation/MKObject.op>
+@import "List.op"
+
+$list = [Container new];     // create an instance of class List.
+[$list addEntry: 5];    // send a message to the object $list
+[$list print];
+[$list addEntry: 6];
+[$list addEntry: 3];
+[$list print];
+echo "\n";

@@ -1,0 +1,53 @@
+<?php
+/*
+ * List.op
+ * example2
+ *
+ * Copyright 2010
+ * Stephen Ierodiaconou <>
+ * Created
+ */
+
+@import <Foundation/MKObject.op>
+
+@implementation Container : MKObject
+{
+    int list = array();          // These are instance variables.
+    int size;
+}
+
++ new                  // factory method
+{
+    $self = [super new];
+    [$self resetSize];
+    return $self;
+}
+
+- free
+{
+    return [super free];
+}
+
+- (int) addEntry: (int) num
+{
+    $this->list[$this->size++] = $num;
+    return $this->size;
+}
+
+- print
+{
+    printf("\n");
+    for ($i = 0; $i < $this->size; ++$i)
+        printf ("%d ", $this->list[$i]); // %i = %d
+    return $self;                // Always return self
+                              // if nothing else makes sense.
+}
+
+- resetSize
+{
+    $this->size = 0;
+    return $self;
+}
+
+@end
+

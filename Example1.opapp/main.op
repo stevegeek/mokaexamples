@@ -1,0 +1,56 @@
+<?php
+/*
+ * main.op
+ * example1
+ *
+ * Copyright 2010
+ * Stephen Ierodiaconou <>
+ * Created
+ */
+
+// Based on this simple example
+// http://burks.bton.ac.uk/burks/language/objc/dekorte/5_sample/sampleco.htm
+
+@import <Foundation/MKObject.op>
+
+@implementation Printer : MKObject
+{
+   char buffer;
+}
+
+-  init
+{
+    if ($self = [super init])
+    {
+        [$self clear];
+    }
+    return $self;
+}
+
+- addStringValue:(String)astring
+{
+    $this->buffer .= $astring;
+    return $self;
+}
+
+- printNow
+{
+    printf("%s\n",$this->buffer);
+    [$self clear];
+    return $self;
+}
+
+- clear
+{
+    $this->buffer = "";
+    return $self;
+}
+
+@end
+
+
+$printer = [[Printer alloc] init];
+[$printer addStringValue:"Hello World!"];
+[$printer printNow];
+
+
