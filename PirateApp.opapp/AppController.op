@@ -1,0 +1,96 @@
+<?php
+/*
+ * AppController.php
+ * PirateApp
+ *
+ * Copyright 2010
+ * Stephen Ierodiaconou <>
+ * Created
+ */
+
+@import <Foundation/Foundation.op>
+@import <Foundation/MKLog.op>
+
+@protocol PirateProtocol
+- (void) withPirateName:pname andRealName:rname;
+@end
+
+
+@implementation Pirate : MKObject < PirateProtocol>
+{
+    @public grog;
+    @private realName;
+    @protected pirateName;
+}
+
+- (void) withPirateName:pname andRealName:rname
+{
+    $self->realName = $rname;
+    $self->pirateName = $pname;
+
+    MKLog("Yarharhar! Welcome ".$this->realName." or rather $pname!!!!");
+}
+
+- (id) addGrog:litres
+{
+    $self->grog += $litres;
+    MKLog("You added $litres litre(s) of grog!");
+    return $self;
+}
+
+- (void) whatToDo:isDrunk
+{
+    if ($isDrunk)
+        MKLog("Arg! ".$self->pirateName." you are drunk!");
+    else
+    {
+        if ($this->grog > 0)
+            MKLog("Arg! ".$self->pirateName." you are not drunk! Drink your grog!");
+        else
+            MKLog("Arg! ".$self->pirateName." you are not drunk! And you are outta grog!!!");
+    }
+}
+
+- drink
+{
+    if ($this->grog > 0)
+        $this->grog--;
+}
+
+- (void) sayArg
+{
+    MKLog("Arg!");
+}
+
+
+@end
+
+
+$newclass = [[Pirate alloc] init];
+
+[$newclass withPirateName:"One Eyed Jaaack" andRealName:"Steve"];
+[$newclass addGrog:1];
+[$newclass whatToDo:false];
+[$newclass drink];
+[$newclass whatToDo:false];
+[$newclass drink];
+[$newclass whatToDo:false];
+
+@implementation Pirate (CatTest)
+
+- (void) sayArg
+{
+    MKLog("Arg from Category!");
+}
+
+- (bool)helloWorldWithName:(MKString)name
+{
+    [$self sayArg];
+}
+
++ (void)helloWorld { echo "boo"; }
+
+
+@end
+
+[$newclass sayArg];
