@@ -1,0 +1,19 @@
+<?php
+@import <Foundation/MKObject.op>
+
+@implementation Char: MKObject  {
+    int value;  // or $value;
+}
+
+- init: (int) x {
+    [super init];
+    $self->value = $x;
+    return $self;
+}
+
+- report {
+    printf("   %c", $self->value);
+    return $self;
+}
+
+@end

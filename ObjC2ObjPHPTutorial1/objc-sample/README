@@ -1,0 +1,8 @@
+This directory contains the complete code for the "Simple Sample Objective-C
+program" described in the comp.lang.objective-c FAQ.  If you have a suitable
+compiler, use the supplied Makefile.  Otherwise, program output can be found
+in the file "output".
+
+You should probably read "main.m" first.  It is very heavily annotated.
+
+Also note and read the file COPYRIGHT.

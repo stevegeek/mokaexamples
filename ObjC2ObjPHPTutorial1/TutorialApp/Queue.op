@@ -1,0 +1,48 @@
+<?php
+@import <Foundation/MKObject.op>
+@import "Node.op"
+
+@implementation	Queue : MKObject
+{
+    id head;
+    id tail;
+    unsigned qsize;
+}
+
+-empty
+{
+    while([$self size])
+        [[$self get] free];
+    return $self;
+}
+
+-put: anItem
+{
+    if ($self->tail)
+        $self->tail = [[$self->tail setNext: [[Node alloc] init:$anItem]] next];
+    else
+    {
+        $self->tail = [[Node alloc] init: $anItem];
+        $self->head = $self->tail;
+    }
+    ++$self->qsize;
+    return $self;
+}
+
+-get
+{
+    $old_head = $self->head;
+
+    $self->head = [$self->head next];
+    $contents = [$old_head free];
+    if (--$self->qsize == 0)
+        $self->tail = $self->head;
+    return $contents;
+}
+
+-(unsigned) size
+{
+    return $self->qsize;
+}
+
+@end

@@ -1,0 +1,67 @@
+<?php
+@import <Foundation/MKObject.op>
+@import "Queue.op"
+@import "Stack.op"
+
+@implementation Int : MKObject
+{
+    int value;
+}
+
+-init: (int) i
+{
+    [super init];
+    $self->value = $i;
+    return $self;
+}
+
+-report
+{
+    printf ("%4d", $self->value);
+    return $self;
+}
+
+@end
+
+@import "Float.op"
+@import "Char.op"
+
+$queue = [[Queue alloc] init];
+$stack = [[Stack alloc] init];
+
+printf ("Include the Char class in the demo? (y/n): ");
+
+$reply = trim(fgets(STDIN));
+
+for ($i = 5; $i > -6; --$i)
+{
+    if ($reply == 'y')
+    {
+        $my_char = [[Char alloc] init:(ord('m') + $i)];
+
+        if ($i & 1)
+        {
+            [$queue put: [[Int alloc] init: $i]];
+            [$stack put: $my_char];
+        }
+        else
+        {
+            [$queue put: $my_char];
+            [$stack put: [[Float alloc] initFloatValue: $i]];
+        }
+    }
+    else
+    {
+        [$queue put: (($i & 1) ? [[Int alloc] init: $i] : [[Float alloc] initFloatValue: $i])];
+        [$stack put: (($i & 1) ? [[Float alloc] initFloatValue: $i] : [[Int alloc] init: $i])];
+    }
+}
+
+while ([$queue size] && [$stack size])
+{
+    printf ("queue:");
+    [[[$queue get] report] free];
+    printf (", stack:");
+    [[[$stack get] report] free];
+    printf("\n");
+}

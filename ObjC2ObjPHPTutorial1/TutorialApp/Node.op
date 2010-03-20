@@ -1,0 +1,31 @@
+<?php
+@import <Foundation/MKObject.op>
+
+@implementation Node: MKObject  {
+    id next;
+    id data;
+}
+
+- init: anItem {
+    $self = [super init];
+    $self->next = 0;
+    $self->data = $anItem;
+    return $self;
+}
+
+-free {
+    $tmp = $self->data;
+    [super free];
+    return $tmp;
+}
+
+-next {
+    return $this->next;
+}
+
+-setNext: aNode {
+    $self->next = $aNode;
+    return $self;
+}
+
+@end

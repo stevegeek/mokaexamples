@@ -1,0 +1,39 @@
+<?php
+@import <Foundation/MKObject.op>
+@import "Node.op"
+
+@implementation	Stack : MKObject {
+    id stack;
+    uint stack_size;
+}
+
+-empty
+{
+    while([$self size])
+        [[$self get] free];
+    return $self;
+}
+
+-put: anItem
+{
+    $self->stack = [[[Node alloc] init: $anItem] setNext : $self->stack];
+    ++$self->stack_size;
+    return $self;
+}
+
+-get
+{
+    $old_stack = $self->stack;
+
+    $self->stack = [$self->stack next];
+    $contents = [$old_stack free];
+    --$self->stack_size;
+    return $contents;
+}
+
+-(unsigned) size
+{
+    return $self->stack_size;
+}
+
+@end

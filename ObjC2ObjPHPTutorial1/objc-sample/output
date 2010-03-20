@@ -1,0 +1,29 @@
+Output from demo, excluding Char class:
+
+Include the Char class in the demo? (y/n): n
+queue:   5, stack:-5.0
+queue: 4.0, stack:  -4
+queue:   3, stack:-3.0
+queue: 2.0, stack:  -2
+queue:   1, stack:-1.0
+queue: 0.0, stack:   0
+queue:  -1, stack: 1.0
+queue:-2.0, stack:   2
+queue:  -3, stack: 3.0
+queue:-4.0, stack:   4
+queue:  -5, stack: 5.0
+
+Output from demo, including Char class:
+
+Include the Char class in the demo? (y/n): y
+queue:   5, stack:   h
+queue:   q, stack:-4.0
+queue:   3, stack:   j
+queue:   o, stack:-2.0
+queue:   1, stack:   l
+queue:   m, stack: 0.0
+queue:  -1, stack:   n
+queue:   k, stack: 2.0
+queue:  -3, stack:   p
+queue:   i, stack: 4.0
+queue:  -5, stack:   r

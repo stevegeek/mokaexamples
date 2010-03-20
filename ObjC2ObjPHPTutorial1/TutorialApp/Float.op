@@ -1,0 +1,19 @@
+<?php
+@import <Foundation/MKObject.op>
+
+@implementation Float: MKObject  {
+    float value;
+}
+
+- initFloatValue: (float) x {
+    [super init];
+    $self->value = $x;
+    return $self;
+}
+
+- report {
+    printf("%4.1f", $self->value);
+    return $self;
+}
+
+@end
